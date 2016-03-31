@@ -9,7 +9,7 @@ public class BubbleSort {
 		System.out.printf("Please input numbers sperate by comma:");
 		String str = input.next();
 		
-		System.out.println(str);
+		ans=BS.sort(str);
 		System.out.println(ans);
 	}
 }
@@ -25,23 +25,23 @@ class BSort{
 		int commapos;
 						
 		data1=new int[len];
-				
+			
+		//find comma
 		q=0;
 		do{
 			commapos=getcomma(a);
 			if(commapos>0){				
 				data1[q]=Integer.valueOf(a.substring(0, commapos));				
 				q++;	
-				a=a.substring(commapos+1, a.length());
-				System.out.println("a=" + a);
-				
+				a=a.substring(commapos+1, a.length());				
 			}			
-			//System.out.println(data1[i]);
 		}while(commapos != 0);
+		//put the number into array
 		data1[q]=Integer.valueOf(a.substring(0, a.length()));	
 		
 		len=q+1;
 		
+		//compare those numbers in group
 		for(i=0;i<len-1;i++){
 			for(j=0;j<len-1-i;j++){			
 				if(data1[j]>data1[j+1]){
@@ -52,14 +52,15 @@ class BSort{
 			}
 		}
 		
+		//add comma between but not the first
 		ret="";
 		for(i=0;i<len;i++){	
 			//System.out.printf("%d\n", data1[i]);
-			if(i==0){
+			if(i==len-1){
 				ret=ret + String.valueOf(data1[i]);
 			}
 			else{
-				ret="," + ret + String.valueOf(data1[i]);
+				ret=ret + String.valueOf(data1[i]) + "," ;
 			}
 			
 		}
@@ -72,7 +73,7 @@ class BSort{
 		char c1;
 		
 		pos=0;
-		//to see if there had a dot
+		//to see if there had a comma
 		for(i=0;i<a.length();i++){
 			c1=a.charAt(i);
 			if(c1==','){
